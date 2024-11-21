@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="#">Estudio H</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav
+
+                ">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Estudio Jurídico H</h1>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h2>Formulario Contacto</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="enviar.php" method="post">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono" required>
+
+                        </div>
+                        <div class="form-group
+                            ">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea class="form-control" id="mensaje" name="mensaje" rows="3" required></textarea>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer class="fixed-bottom bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>Estudio Jurídico H</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        $(document).ready(function () {
+            $('form').submit(function (e) {
+                e.preventDefault();
+                var nombre = $('#nombre').val();
+                var email = $('#email').val();
+                var telefono = $('#telefono').val();
+                var mensaje = $('#mensaje').val();
+
+                if (nombre == '' || email == '' || telefono == '' || mensaje == '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Todos los campos son obligatorios'
+                    });
+                    return;
+                }
+                //swal con loading
+                Swal.fire({
+                    title: 'Enviando mensaje',
+                    html: 'Por favor espere',
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    },
+                });
+
+                setTimeout(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Mensaje enviado',
+                        text: 'Su mensaje ha sido enviado exitosamente',
+                    });
+                }, 2000);
+
+
+            });
+        });
+
+    </script>
+</body>
+
+</html>
